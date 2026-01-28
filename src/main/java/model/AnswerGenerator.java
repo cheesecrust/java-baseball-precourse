@@ -2,6 +2,6 @@ package model;
 
 public interface AnswerGenerator {
 
-    public String generateAnswer();
+    String generateAnswer();
 
 }
