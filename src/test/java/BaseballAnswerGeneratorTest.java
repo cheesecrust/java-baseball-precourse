@@ -15,32 +15,32 @@ public class BaseballAnswerGeneratorTest {
         answerGenerator = new BaseballAnswerGenerator();
     }
 
-    @DisplayName("정답 길이 테스트")
+    @DisplayName("정답은 3자리 숫자이다")
     @Test
-    void generatedLengthTest() {
+    void generateAnswer_returnsLengthThree() {
         String answer = answerGenerator.generateAnswer();
-        assertThat(answer.length()).isSameAs(3);
+        assertThat(answer.length()).isEqualTo(3);
     }
 
-    @DisplayName("정답 안에 0이 없는지 test")
+    @DisplayName("정답은 0을 포함하지 않는다")
     @Test
-    void generatedAnswerZeroTest() {
+    void generateAnswer_doesNotContainZero() {
         String answer = answerGenerator.generateAnswer();
         assertThat(answer).doesNotContain("0");
     }
 
-    @DisplayName("정답이 모두 숫자인지 test")
+    @DisplayName("정답은 숫자로만 이루어져 있다")
     @Test
-    void generatedAnswerAsciiTest() {
+    void generateAnswer_containsOnlyDigits() {
         String answer = answerGenerator.generateAnswer();
         assertThat(answer).matches("\\d+");
     }
 
-    @DisplayName("정답이 숫자가 모두 다른지 test")
+    @DisplayName("정답의 모든 숫자는 서로 다르다")
     @Test
-    void generatedAnswerDiffTest() {
+    void generateAnswer_hasNoDuplicateDigits() {
         String answer = answerGenerator.generateAnswer();
-        assertThat(answer.chars().distinct().count()).isEqualTo(answer.length());
+        assertThat(answer.chars().distinct().count())
+                .isEqualTo(answer.length());
     }
-
 }
