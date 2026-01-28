@@ -35,4 +35,25 @@ public class BaseballAnswerJudgeTest {
         int strikes = answerJudge.countStrikes("123", "123");
         assertThat(strikes).isEqualTo(3);
     }
+
+    @DisplayName("같은 위치의 숫자는 볼로 판정하지 않는다.")
+    @Test
+    void countBalls_returnsCorrectCount_when_positionsMatch() {
+        int balls = answerJudge.countBalls("123", "153");
+        assertThat(balls).isEqualTo(0);
+    }
+
+    @DisplayName("같은 숫자가 위치가 다르면 볼이다.")
+    @Test
+    void countBalls_returnsOne_when_noPositionMatches_OneValueMatches() {
+        int balls = answerJudge.countBalls("456", "124");
+        assertThat(balls).isEqualTo(1);
+    }
+
+    @DisplayName("같은 숫자가 없으면 볼은 0이다.")
+    @Test
+    void countBalls_returnsZero_when_noPositionMatches() {
+        int balls = answerJudge.countBalls("123", "456");
+        assertThat(balls).isZero();
+    }
 }
