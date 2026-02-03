@@ -1,5 +1,8 @@
 package model;
 
+import constant.GameConstants;
+import constant.GameMessages;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,23 +17,23 @@ public class BaseballInputValidator implements InputValidator {
     }
 
     private void validateLength(String input) {
-        if (input.length() != 3) {
-            throw new IllegalArgumentException("[ERROR] 3자리 숫자를 입력해주세요.");
+        if (input.length() != GameConstants.ANSWER_LENGTH) {
+            throw new IllegalArgumentException(GameMessages.ERROR_INVALID_LENGTH);
         }
     }
 
     private void validateDigitsOnly(String input) {
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c)) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+                throw new IllegalArgumentException(GameMessages.ERROR_NOT_DIGIT);
             }
         }
     }
 
     private void validateRange(String input) {
         for (char c : input.toCharArray()) {
-            if (c == '0') {
-                throw new IllegalArgumentException("[ERROR] 1부터 9까지의 숫자만 입력해주세요.");
+            if (c == GameConstants.EXCLUDED_DIGIT) {
+                throw new IllegalArgumentException(GameMessages.ERROR_INVALID_RANGE);
             }
         }
     }
@@ -39,7 +42,7 @@ public class BaseballInputValidator implements InputValidator {
         Set<Character> seen = new HashSet<>();
         for (char c : input.toCharArray()) {
             if (!seen.add(c)) {
-                throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해주세요.");
+                throw new IllegalArgumentException(GameMessages.ERROR_DUPLICATE);
             }
         }
     }

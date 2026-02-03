@@ -1,5 +1,7 @@
 package model;
 
+import constant.GameConstants;
+
 public class BaseballGameManager implements GameManager {
     private final AnswerGenerator answerGenerator;
     private final AnswerJudge answerJudge;
@@ -26,7 +28,7 @@ public class BaseballGameManager implements GameManager {
         int strikes = answerJudge.countStrikes(input, answer);
         int balls = answerJudge.countBalls(input, answer);
 
-        if (strikes == 3) {
+        if (strikes == GameConstants.ANSWER_LENGTH) {
             this.playing = false;
             this.gameWon = true;
         }

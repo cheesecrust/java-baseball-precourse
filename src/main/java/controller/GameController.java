@@ -1,5 +1,6 @@
 package controller;
 
+import constant.GameConstants;
 import model.GameManager;
 import model.InputValidator;
 import view.OutputView;
@@ -51,6 +52,6 @@ public class GameController {
     private boolean askRestart() {
         outputView.printRestartPrompt();
         String input = scanner.nextLine();
-        return input.equals("1");
+        return input.equals(GameConstants.RESTART_COMMAND);
     }
 }

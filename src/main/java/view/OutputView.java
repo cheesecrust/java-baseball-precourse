@@ -1,37 +1,39 @@
 package view;
 
+import constant.GameMessages;
+
 public class OutputView {
 
     public void printGameStart() {
-        System.out.println("숫자 야구 게임을 시작합니다.");
+        System.out.println(GameMessages.GAME_START);
     }
 
     public void printInputPrompt() {
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(GameMessages.INPUT_PROMPT);
     }
 
     public void printResult(int strikes, int balls) {
         if (strikes == 0 && balls == 0) {
-            System.out.println("낫싱");
+            System.out.println(GameMessages.NOTHING);
             return;
         }
 
         StringBuilder result = new StringBuilder();
         if (balls > 0) {
-            result.append(balls).append("볼 ");
+            result.append(balls).append(GameMessages.BALL).append(" ");
         }
         if (strikes > 0) {
-            result.append(strikes).append("스트라이크");
+            result.append(strikes).append(GameMessages.STRIKE);
         }
         System.out.println(result.toString().trim());
     }
 
     public void printGameWon() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println(GameMessages.GAME_WON);
     }
 
     public void printRestartPrompt() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(GameMessages.RESTART_PROMPT);
     }
 
     public void printError(String message) {
